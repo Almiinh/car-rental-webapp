@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Parking{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouveau Parking</h1>
+
+    {{ include('parking/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_parking_index') }}">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des clients{% endblock %}
+
+{% block body %}
+    {% if chooseButton %}
+        <h1>👨‍👩‍👧‍👦 Choisissez un client</h1>
+    {% else %}
+        <h1>👨‍👩‍👧‍👦 Index des clients</h1>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code postal</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.rue }}</td>
+                <td>{{ client.ville }}</td>
+                <td>{{ client.codePostal }}</td>
+                <td>{{ client.tel }}</td>
+                <td>
+                    {% if chooseButton %}
+                        {% if choosePath == 'contrat' %}
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('app_contrat_selectvoiture', {'id': client.id}) }}">Choisir</a>
+                        {% elseif choosePath == 'facture'%}
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('app_facture_new_setclient', {'id': client.id}) }}">Choisir</a>
+                        {% endif %}
+                    {% else %}
+                        <a class="btn btn-outline-primary btn-sm" href="{{ path('app_client_show', {'id': client.id}) }}">Afficher</a>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun client trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ path('app_client_new') }}">Ajouter un client</a>
+{% endblock %}

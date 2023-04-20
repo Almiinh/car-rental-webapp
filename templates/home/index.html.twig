@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Bienvenue sur CarRentalWebApp ! ✅</h1>
+
+    Vous pouvez gérer le système de location de voiture via cette interface.
+    <ol>
+        <li>Ajouter vos clients dans l'onglet <code><a href="/client/">Client</a></code></li>
+        <li>Ajouter des <code><a href="/parking/">Parkings</a></code></li>
+        <li>Ajouter des voitures dans l'onglet <code><a href="/voiture/">Voiture</a></code></li>
+        <li>Ajouter des parkings dans l'onglet <code><a href="/parking/">Parkings</a></code> et y ajouter les voitures</li>
+        <br/>
+        <li>Faîtes une location avec l'onglet <code><a href="/contrat/">Contrat</a></code></li>
+    </ol>
+</div>
+{% endblock %}

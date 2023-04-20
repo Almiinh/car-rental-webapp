@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parking{% endblock %}
+
+{% block body %}
+    <h1>Parking</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>N°</th>
+                <td>{{ parking.id }}</td>
+            </tr>
+            <tr>
+                <th>Capacité</th>
+                <td>{{ parking.capacite }}</td>
+            </tr>
+            <tr>
+                <th>Rue</th>
+                <td>{{ parking.rue }}</td>
+            </tr>
+            <tr>
+                <th>Arrondissement</th>
+                <td>{{ parking.arrondissement }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_parking_index') }}">Retour à la liste</a>
+    <a class="btn btn-primary" href="{{ path('app_parking_edit', {'id': parking.id}) }}">Modifier</a>
+    {{ include('parking/_delete_form.html.twig') }}
+
+    <h2 style="padding-top: 1em">Voitures garées dans le parking</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Immatriculation</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Carburant</th>
+                <th>Capacité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voiture in voitures %}
+            <tr>
+                <td>{{ voiture.id }}</td>
+                <td>{{ voiture.immatriculation }}</td>
+                <td>{{ voiture.marque }}</td>
+                <td>{{ voiture.modele }}</td>
+                <td>{{ voiture.carburant }}</td>
+                <td>{{ voiture.capacite }}</td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_voiture_show', {'id': voiture.id}) }}">Afficher</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_voiture_edit', {'id': voiture.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune voiture trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="{{ path('app_parking_selectvoiture', {'id': parking.id}) }}">Ajouter une voiture</a>
+
+{% endblock %}

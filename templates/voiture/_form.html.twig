@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    <div style="width: 500px;">
+        {{ form_row(form.immatriculation) }}
+        {{ form_row(form.marque) }}
+        {{ form_row(form.modele, {label : 'Modèle'}) }}
+        {{ form_row(form.carburant) }}
+        {{ form_row(form.capacite, {label : 'Capacité'}) }}
+    </div>
+
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <br\>
+{{ form_end(form) }}

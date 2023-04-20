@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    <div style="width: 500px; ">
+        {# {{ form_label('Immatriculation')}} #}
+        Immatriculation<br/>
+        <a class="btn btn-outline-dark" style="margin: 1em auto" href="path('app_voiture_show', {'id': contrat.voiture.id}) }}"> {{ contrat.voiture.immatriculation }}</a>
+        {{ form_row(form.type) }}
+        {{ form_row(form.date_depart, {label: 'Date de début'}) }}
+        {{ form_row(form.date_retour, {label: 'Date de fin'}) }}
+    </div>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <br\>
+{{ form_end(form) }}
+

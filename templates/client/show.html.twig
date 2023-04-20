@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}
+    <h1>Client</h1>
+
+    <table class="table" style="width: 500px;">
+        <tbody>
+            <tr>
+                <th>Numéro</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ client.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ client.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ client.rue }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ client.ville }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ client.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ client.tel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier</a>
+    {{ include('client/_delete_form.html.twig') }}
+
+    
+    <h2 style="padding-top: 1em">Contrats du client</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N° de contrat</th>
+                <th>Immatriculation</th>
+                <th>Type</th>
+                <th>Date départ</th>
+                <th>Date retour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.voiture.immatriculation }}</td>
+                <td>{{ contrat.type }}</td>
+                <td>{{ contrat.dateDepart ? contrat.dateDepart|date('d/m/Y') : '' }}</td>
+                <td>{{ contrat.dateRetour ? contrat.dateRetour|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_contrat_show', {'id': contrat.id}) }}">Afficher</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun contrat trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      
+    <a class="btn btn-primary" href="{{ path('app_contrat_selectvoiture', {'id': client.id}) }}">Créer un nouveau contrat</a>
+    
+    <h2 style="padding-top: 1em">Factures du client</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Date</th>
+                <th>Compteur km</th>
+                <th>Montant HT</th>
+                <th>Montant à payer</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture in factures %}
+            <tr>
+                <td>{{ facture.id }}</td>
+                <td>{{ facture.date ? facture.date|date('d/m/Y') : '' }}</td>
+                <td>{{ facture.compteurKm }}</td>
+                <td>{{ facture.montantHt }}</td>
+                <td>{{ facture.montantAPayer }}</td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_facture_show', {'id': facture.id}) }}">Afficher</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_facture_edit', {'id': facture.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune facture trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_facture_new_setclient', {'id': client.id}) }}">Faire une nouvelle facture</a>
+{% endblock %}

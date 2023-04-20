@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}📃 Nouveau Contrat{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau contrat de location</h1>
+
+    {{ include('contrat/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_contrat_index') }}">Retour à la liste</a>
+{% endblock %}

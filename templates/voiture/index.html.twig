@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voitures{% endblock %}
+
+{% block body %}
+    <h1>Voitures</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Immatriculation</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Carburant</th>
+                <th>Capacité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voiture in voitures %}
+            <tr>
+                <td>{{ voiture.id }}</td>
+                <td>{{ voiture.immatriculation }}</td>
+                <td>{{ voiture.marque }}</td>
+                <td>{{ voiture.modele }}</td>
+                <td>{{ voiture.carburant }}</td>
+                <td>{{ voiture.capacite }}</td>
+                <td>
+                    {% if chooseButton %}
+                        {% if choosePath == 'contrat' %}
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('app_contrat_new_set', {'voiture_id': voiture.id, 'client_id' : client.id}) }}">Choisir</a>
+                        {% elseif choosePath == 'parking' %}
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('app_parking_add', {'parking_id': parking.id,'voiture_id': voiture.id}) }}">Choisir</a>
+                        {% endif %}
+                    {% else %}
+                        <a class="btn btn-outline-primary btn-sm" href="{{ path('app_voiture_show', {'id': voiture.id}) }}">Afficher</a>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ path('app_voiture_edit', {'id': voiture.id}) }}">Modifier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune voiture trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_voiture_new') }}">Nouvelle voiture</a>
+{% endblock %}

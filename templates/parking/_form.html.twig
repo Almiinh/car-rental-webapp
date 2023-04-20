@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+<div style="width: 500px;">
+    {{ form_row(form.capacite, {label: 'Capacité'}) }}
+    {{ form_row(form.rue) }}
+    {{ form_row(form.arrondissement) }}
+</div>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <br\>
+{{ form_end(form) }}

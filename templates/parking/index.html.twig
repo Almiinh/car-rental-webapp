@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parkings{% endblock %}
+
+{% block body %}
+    <h1>Parkings</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Capacité</th>
+                <th>Rue</th>
+                <th>Arrondissement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parking in parkings %}
+            <tr>
+                <td>{{ parking.id }}</td>
+                <td>{{ parking.capacite }}</td>
+                <td>{{ parking.rue }}</td>
+                <td>{{ parking.arrondissement }}</td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_parking_show', {'id': parking.id}) }}">Afficher</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_parking_edit', {'id': parking.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun parking trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_parking_new') }}">Nouveau parking</a>
+{% endblock %}

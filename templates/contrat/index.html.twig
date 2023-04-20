@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des contrats{% endblock %}
+
+{% block body %}
+    <h1>📃 Index des contrats de location</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N° de contrat</th>
+                <th>N° Client</th>
+                <th>Immatriculation</th>
+                <th>Type</th>
+                <th>Date départ</th>
+                <th>Date retour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.client.id }}</td>
+                <td>{{ contrat.voiture.immatriculation }}</td>
+                <td>{{ contrat.type }}</td>
+                <td>{{ contrat.dateDepart ? contrat.dateDepart|date('d/m/Y') : '' }}</td>
+                <td>{{ contrat.dateRetour ? contrat.dateRetour|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_contrat_show', {'id': contrat.id}) }}">Afficher</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun contrat trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_contrat_selectclient') }}">Créer un nouveau contrat</a>
+{% endblock %}
