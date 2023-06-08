@@ -1,11 +1,11 @@
 This is a school project for the course **Enterprise Software Application** taught in **Mines Saint-Étienne**.
 
-Requirements :
+### **Requirements :**
 - WAMP, MAMP, XAMPP : Solution stack with Apache, MariaDB, PHP
 - [Composer][1] : Dependency Manager for PHP
 - [Symfony CLI][2] : Symfony Command Line Interface
 
-Run : 
+### **Run : **
 1. Open WAMP/MAMP/XAMPP
 2. Open terminal
 3. Run `composer update` to update dependencies
