@@ -87,12 +87,6 @@ class ContratController extends AbstractController
         $client->addContrat($contrat);
         $client->addVoiture($voiture);
         $voiture->setContrat($contrat);
-        // if (!$this->voitures->contains($voiture)) {
-            
-        // } else {
-        //     // render
-        // }
-
 
         $form = $this->createForm(ContratType::class, $contrat);
         $form->handleRequest($request);

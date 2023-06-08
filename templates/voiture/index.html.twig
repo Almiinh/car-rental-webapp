@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}🚗 Voitures{% endblock %}
+{% block title %}Voitures{% endblock %}
 
 {% block body %}
-    <h1>Voitures</h1>
+    {% if chooseButton %}
+        <h1>🚗 Choisissez une voiture</h1>
+    {% else %}
+        <h1>🚗 Voitures</h1>
+    {% endif %}
 
     <table class="table">
         <thead>
