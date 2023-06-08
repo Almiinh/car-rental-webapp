@@ -15,5 +15,5 @@ Run :
 6. Run `symfony server:start -d`
 7. Go to http://localhost:8000/home
 
-[1]https://getcomposer.org/
-[2]https://symfony.com/
+[1]: https://getcomposer.org/
+[2]: https://symfony.com/
